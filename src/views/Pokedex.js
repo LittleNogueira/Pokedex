@@ -19,7 +19,7 @@ class Pokedex extends React.Component {
     }
 
     componentDidMount(){
-        fetch("https://pokeapi.co/api/v2/pokemon?offset=100&limit=20")
+        fetch("https://pokeapi.co/api/v2/pokemon?offset=450&limit=20")
             .then(res => res.json())
             .then(res => {
                 this.setState({pokemons:res.results})
@@ -45,17 +45,6 @@ class Pokedex extends React.Component {
                     keyExtractor={item => item.name}
                     numColumns={2}
                 />
-                {/* <View style={styles.containerPokedex} >
-                    <View style={styles.groupPokedex} >
-                        
-                        <ItemPokedex color="#4FC1A6"/>
-                    </View>
-                    <View style={styles.groupPokedex} >
-                        <ItemPokedex color="#4FC1A6"/>
-                        <ItemPokedex color="#4FC1A6"/>
-                    </View>
-                </View> */}
-
             </Template>
         );
     }
@@ -68,17 +57,6 @@ const styles = StyleSheet.create({
         lineHeight: 42,
         fontFamily: "Circular Std",
         fontWeight: "bold"
-    },
-    containerPokedex:{
-        flexDirection:"row",
-        justifyContent:"space-between"
-    },
-    groupPokedex:{
-        flexDirection:"column",
-        width:"48%"
-    },
-    teste:{
-        marginLeft:10
     }
 });
 

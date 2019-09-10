@@ -28,12 +28,17 @@ class ItemPokedex extends React.Component{
     getColor = () => {
 
         const types = this.state.pokemon.types;
+        let substract = 1;
 
         if(types === undefined){
             return "#4FC1A6";
         }
 
-        switch (types[types.length - 1].type.name) {
+        if(types.length > 1 && types[types.length - substract].type.name === 'normal'){
+            substract++;
+        }
+
+        switch (types[types.length - substract].type.name) {
             case 'fire':
                 return "#F7786B"
                 break;
@@ -57,6 +62,18 @@ class ItemPokedex extends React.Component{
             case 'ground':
                 return "#B1736C";
                 break;   
+            
+            case 'dark':
+                return "#565669";
+                break;
+            
+            case 'flying':
+                return "#cdcde6";
+                break;
+            
+            case 'dragon':
+                return "#f7af5a";
+                break;
 
             default:
                 return "#c5c5c5"
