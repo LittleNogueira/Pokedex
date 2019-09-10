@@ -11,8 +11,11 @@ const Template = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        marginLeft: 22,
-        marginRight: 22
+        // paddingLeft: 22,
+        // paddingRight: 22,
+        backgroundColor:"white",
+        height:"100%",
+        width:"100%"
     }
 });
 

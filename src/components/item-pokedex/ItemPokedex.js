@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
         alignItems:"center",
         borderRadius:20,
         marginBottom:10,
-        width:170
+        width:"100%"
     },
     infos:{
         flexDirection:"column",

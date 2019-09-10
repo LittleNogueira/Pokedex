@@ -19,7 +19,7 @@ class Pokedex extends React.Component {
     }
 
     componentDidMount(){
-        fetch("https://pokeapi.co/api/v2/pokemon?offset=450&limit=20")
+        fetch("https://pokeapi.co/api/v2/pokemon")
             .then(res => res.json())
             .then(res => {
                 this.setState({pokemons:res.results})
@@ -41,7 +41,7 @@ class Pokedex extends React.Component {
                 <Text style={styles.title} >Pokedex</Text>
                 <FlatList
                     data={pokemons}
-                    renderItem={({ item, index}) => <View style={{marginLeft:(index%2)*10}} ><ItemPokedex url={item.url}/></View>}
+                    renderItem={({ item, index}) => <View style={{marginLeft:(index%2)*10,flex:1}} ><ItemPokedex url={item.url}/></View>}
                     keyExtractor={item => item.name}
                     numColumns={2}
                 />
