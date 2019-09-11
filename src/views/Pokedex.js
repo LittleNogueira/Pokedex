@@ -21,7 +21,7 @@ class Pokedex extends React.Component {
     }
 
     componentDidMount(){
-        fetch("https://pokeapi.co/api/v2/pokemon?offset=140&limit=20")
+        fetch("https://pokeapi.co/api/v2/pokemon?offset=500&limit=20")
             .then(res => res.json())
             .then(res => {
                 this.setState({pokemons:res.results})

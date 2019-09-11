@@ -10,7 +10,6 @@
     "react-devtool": "react-devtools"
   },
   "dependencies": {
-    "galio-framework": "^0.5.4",
     "react": "16.8.6",
     "react-native": "0.60.5",
     "react-native-navigation": "^3.1.2"

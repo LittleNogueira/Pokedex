@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     },
     image:{
         width: 85,
-        height: 85
+        height: 85,
     },
     teste:{
         height: 110,
