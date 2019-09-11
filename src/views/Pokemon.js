@@ -1,16 +1,26 @@
 import React from 'react';
 import {
-    View
+    View,
+    Text
 } from 'react-native';
+
+import Template from '../templates/Template';
 
 class Pokemon extends React.Component{
 
+    constructor(props){
+        super(props);
+        console.warn(this.props);
+    }
+
     render(){
         return(
-            <View>
-                
-            </View>
+            <Template>
+                <Text>sdfsdf</Text>
+            </Template>
         );
     };
 
 }
+
+export default Pokemon;

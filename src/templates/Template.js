@@ -1,5 +1,8 @@
 import React from 'react';
-import {View,StyleSheet} from 'react-native';
+import {
+    View,
+    StyleSheet
+} from 'react-native';
 
 const Template = (props) => {
     return (
@@ -11,8 +14,8 @@ const Template = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        // paddingLeft: 22,
-        // paddingRight: 22,
+        paddingLeft: 15,
+        paddingRight: 15,
         backgroundColor:"white",
         height:"100%",
         width:"100%"

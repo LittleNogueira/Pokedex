@@ -8,6 +8,8 @@ import {
 
 import Template from '../templates/Template';
 import ItemPokedex from '../components/item-pokedex/ItemPokedex';
+import { Navigation } from "react-native-navigation";
+
 
 class Pokedex extends React.Component {
 
@@ -19,7 +21,7 @@ class Pokedex extends React.Component {
     }
 
     componentDidMount(){
-        fetch("https://pokeapi.co/api/v2/pokemon")
+        fetch("https://pokeapi.co/api/v2/pokemon?offset=140&limit=20")
             .then(res => res.json())
             .then(res => {
                 this.setState({pokemons:res.results})
@@ -32,6 +34,15 @@ class Pokedex extends React.Component {
         });
     }
 
+    goPokemon = (pokemon) => {
+        Navigation.push(this.props.componentId,{
+            component: {
+                name: 'Pokemon',
+                passProps: {pokemon}
+            },
+        });
+    }
+
     render(){
 
         const {pokemons} = this.state;
@@ -41,7 +52,7 @@ class Pokedex extends React.Component {
                 <Text style={styles.title} >Pokedex</Text>
                 <FlatList
                     data={pokemons}
-                    renderItem={({ item, index}) => <View style={{marginLeft:(index%2)*10,flex:1}} ><ItemPokedex url={item.url}/></View>}
+                    renderItem={({ item, index}) => <View style={{marginLeft:(index%2)*10,flex:1}} ><ItemPokedex onPress={this.goPokemon.bind(this)} url={item.url}/></View>}
                     keyExtractor={item => item.name}
                     numColumns={2}
                 />

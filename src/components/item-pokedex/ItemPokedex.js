@@ -7,106 +7,51 @@ import {
     Image
 } from 'react-native';
 
+import PokemonUtil from '../../utils/PokemonUtil';
 
 class ItemPokedex extends React.Component{
 
     constructor(props){
         super(props);
         this.state = {
-            pokemon:{}
+            pokemon:{},
         }
     }
 
     componentDidMount(){
         fetch(this.props.url).then(res => res.json()).then(res => {
             let pokemon = res;
-            pokemon.name = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
+            pokemon.name = PokemonUtil.upperCaseFirstLetter(pokemon.name);
             this.setState({pokemon});
         });
     }
 
-    getColor = () => {
-
-        const types = this.state.pokemon.types;
-        let substract = 1;
-
-        if(types === undefined){
-            return "#4FC1A6";
+    getListTypes = () => {
+        if(this.state.pokemon.types !== undefined){
+            return this.state.pokemon.types.map(typeAux => {
+                return (<Text key={`${this.state.pokemon.name}-${typeAux.type.name}`} style={styles.type} >{PokemonUtil.upperCaseFirstLetter(typeAux.type.name)}</Text>);
+            });
         }
-
-        if(types.length > 1 && types[types.length - substract].type.name === 'normal'){
-            substract++;
-        }
-
-        switch (types[types.length - substract].type.name) {
-            case 'fire':
-                return "#F7786B"
-                break;
-
-            case 'water':
-                return "#77C4FE"
-                break; 
-                
-            case 'poison':
-                return "#7C538C"
-                break;     
-        
-            case 'grass':
-                return "#4FC1A6";
-                break;
-
-            case 'electric':
-                return "#FFCE4B";
-                break;   
-            
-            case 'ground':
-                return "#B1736C";
-                break;   
-            
-            case 'dark':
-                return "#565669";
-                break;
-            
-            case 'flying':
-                return "#cdcde6";
-                break;
-            
-            case 'dragon':
-                return "#f7af5a";
-                break;
-
-            default:
-                return "#c5c5c5"
-        }
-    }
-
-    getImagePokemon = () => {
-
-        const pokemon = this.state.pokemon;
-
-        if(pokemon.sprites === undefined){
-            return  {uri:null};
-        }else{
-            return {uri:pokemon.sprites.front_default}
-        }   
     }
 
     render(){
 
         const {pokemon} = this.state; 
+        const {onPress} = this.props;
 
         return(
-            <TouchableOpacity>
-                <View style={{...styles.container,backgroundColor:this.getColor()}} >
-                    <View style={styles.infos} >
-                            <Text style={styles.name} >{pokemon.name}</Text>
-                            <Text>Poison</Text>
-                            <Text>Grass</Text>
+            <TouchableOpacity onPress={() => onPress(pokemon)} >
+                <View style={{...styles.teste,backgroundColor:PokemonUtil.getColor(pokemon.types)}} >
+                    <Text style={styles.name} >{pokemon.name}</Text>
+                    <View style={styles.container} >
+                        <View style={styles.infos} >
+                            {this.getListTypes()}
+                        </View>
+                        <Image
+                            style={styles.image}
+                            source={PokemonUtil.getImagePokemon(pokemon)}
+                        />
                     </View>
-                    <Image
-                        style={styles.image}
-                        source={this.getImagePokemon()}
-                    />
                 </View>
             </TouchableOpacity>
        );
@@ -117,24 +62,40 @@ class ItemPokedex extends React.Component{
 const styles = StyleSheet.create({
     container:{
         flexDirection:"row",
-        height: 100,
         alignItems:"center",
-        borderRadius:20,
-        marginBottom:10,
-        width:"100%"
+        justifyContent:"space-around",
+        marginTop:-16
     },
     infos:{
         flexDirection:"column",
-        marginLeft:20
+        // marginLeft:20
     },
     name:{
-        fontSize:13,
+        fontSize:14,
         fontWeight:"bold",
-        color:"white"
+        color:"white",
+        marginLeft: 18,
+        marginTop:10
     },
     image:{
         width: 85,
         height: 85
+    },
+    teste:{
+        height: 100,
+        borderRadius:20,
+        marginBottom:10,
+        width:"100%"
+    },
+    type:{
+        backgroundColor:"rgba(255,255,255,0.2)",
+        fontSize:11,
+        color:"white",
+        padding:3,
+        borderRadius:15,
+        marginTop:5,
+        textAlign:"center",
+        width: 50
     }
 });
 
