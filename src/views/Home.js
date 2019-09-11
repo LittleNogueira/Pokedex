@@ -25,14 +25,14 @@ const Home = (props) => {
             <Text style={styles.title}>What Pokemon{'\n'}are you looking for?</Text>
             <View style={styles.containerCategory} >
                 <View style={styles.groupCategory} >
-                    <Category onPress={goPokedex.bind(this)} color="#4FC1A6" title="Pokedex" />
-                    <Category color="#77C4FE" title="Abilities" />
-                    <Category color="#7C538C" title="Locations" />
+                    <Category onPress={goPokedex.bind(this)} color="#4FC1A6">Pokedex</Category>
+                    <Category color="#77C4FE">Abilities</Category>
+                    <Category color="#7C538C">Locations</Category>
                 </View>
                 <View style={styles.groupCategory} >
-                    <Category color="#F7786B" title="Moves" />
-                    <Category color="#FFCE4B" title="Items" />
-                    <Category color="#B1736C" title="Type Charts" />
+                    <Category color="#F7786B">Moves</Category>
+                    <Category color="#FFCE4B">Items</Category>
+                    <Category color="#B1736C">Type Charts</Category>
                 </View>
             </View>
         </Template>

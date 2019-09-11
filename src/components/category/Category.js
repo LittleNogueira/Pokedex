@@ -5,7 +5,7 @@ const Category = (props) => {
     return (
         <TouchableOpacity onPress={props.onPress} >
             <View style={{...styles.category,backgroundColor:props.color}} >
-                <Text style={styles.title} >{props.title}</Text>
+                <Text style={styles.title} >{props.children}</Text>
             </View>
         </TouchableOpacity>
     );

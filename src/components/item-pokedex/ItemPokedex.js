@@ -19,9 +19,7 @@ class ItemPokedex extends React.Component{
     }
 
     componentDidMount(){
-        fetch(this.props.url).then(res => res.json()).then(res => {
-            let pokemon = res;
-            pokemon.name = PokemonUtil.upperCaseFirstLetter(pokemon.name);
+        fetch(this.props.url).then(res => res.json()).then(pokemon => {
             this.setState({pokemon});
         });
     }
@@ -42,7 +40,7 @@ class ItemPokedex extends React.Component{
         return(
             <TouchableOpacity onPress={() => onPress(pokemon)} >
                 <View style={{...styles.teste,backgroundColor:PokemonUtil.getColor(pokemon.types)}} >
-                    <Text style={styles.name} >{pokemon.name}</Text>
+                    <Text style={styles.name} >{PokemonUtil.upperCaseFirstLetter(pokemon.name)}</Text>
                     <View style={styles.container} >
                         <View style={styles.infos} >
                             {this.getListTypes()}
@@ -67,8 +65,7 @@ const styles = StyleSheet.create({
         marginTop:-16
     },
     infos:{
-        flexDirection:"column",
-        // marginLeft:20
+        flexDirection:"column"
     },
     name:{
         fontSize:14,
@@ -82,7 +79,7 @@ const styles = StyleSheet.create({
         height: 85
     },
     teste:{
-        height: 100,
+        height: 110,
         borderRadius:20,
         marginBottom:10,
         width:"100%"
