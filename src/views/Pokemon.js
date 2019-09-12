@@ -18,6 +18,14 @@ class Pokemon extends React.Component {
         super(props);
     }
 
+    getListTypes = () => {
+        if(this.props.pokemon.types !== undefined){
+            return this.props.pokemon.types.map(typeAux => {
+                return (<Text key={`${this.props.pokemon.name}-${typeAux.type.name}`} style={styles.type} >{PokemonUtil.upperCaseFirstLetter(typeAux.type.name)}</Text>);
+            });
+        }
+    }
+
     render() {
 
         const { pokemon } = this.props;
@@ -28,8 +36,7 @@ class Pokemon extends React.Component {
                     <View style={styles.info} >
                         <Text style={styles.name} >{PokemonUtil.upperCaseFirstLetter(pokemon.name)}</Text>
                         <View style={styles.types} >
-                            <Text style={styles.type} >Grass</Text>
-                            <Text style={styles.type} >Poison</Text>
+                            {this.getListTypes()}
                         </View>
                         <View style={styles.teste} >
                             <Image style={styles.image} source={PokemonUtil.getImagePokemon(pokemon)} />
