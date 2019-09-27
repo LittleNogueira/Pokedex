@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{Fragment} from 'react';
 import {
     View,
     Text,
@@ -12,10 +12,15 @@ import PokemonUtil from '../utils/PokemonUtil';
 
 import Card from '../components/card/Card';
 
+
 class Pokemon extends React.Component {
 
     constructor(props) {
         super(props);
+        
+        this.state = {
+            specie:{}
+        }
     }
 
     getListTypes = () => {
@@ -26,9 +31,22 @@ class Pokemon extends React.Component {
         }
     }
 
+    getPokemonSpecies = () => {
+        fetch(this.props.pokemon.species.url)
+        .then(res => res.json())
+        .then(res => {
+            this.setState({specie:res});
+        });
+    }
+
+    componentDidMount(){
+        this.getPokemonSpecies();
+    }
+
     render() {
 
         const { pokemon } = this.props;
+        const { specie } = this.state;
 
         return (
             <ScrollView contentContainerStyle={styles.container} >
@@ -44,21 +62,20 @@ class Pokemon extends React.Component {
                     </View>
                 </View>
                 <View style={styles.body} >
-                    <Text style={styles.title} >About</Text>
-                    <Text>
-                        Maecenas eleifend arcu sed felis commodo, nec tincidunt turpis molestie. 
-                        Integer malesuada nec sapien vitae accumsan. 
-                        Maecenas sed imperdiet est, id efficitur erat. 
-                        Cras accumsan aliquam metus quis placerat. 
-                        Pellentesque rhoncus vulputate pretium. 
-                        Curabitur vel ligula luctus, viverra lorem id, commodo nulla. 
-                        Nulla sagittis neque ullamcorper, pellentesque eros eu, gravida mi. 
-                        In sed mi faucibus, malesuada sapien ut, fermentum neque. 
-                        Aliquam eget feugiat enim. Donec velit leo, congue ac elit vitae, sodales pulvinar velit. 
-                    </Text>
+                    <Text style={styles.title} >Characteristic</Text>
+                    <Text style={styles.description} >{PokemonUtil.getDescriptionPokemon(specie.flavor_text_entries)}</Text>
 
                     <Card>
-                        <Text>Teste</Text>
+                        <View style={styles.viewHeightWeight} >
+                            <View style={styles.dataHeightWeight} >
+                                <Text style={styles.titleHeightWeight} >Height</Text>
+                                <Text>{PokemonUtil.getHeightPokemon(pokemon.height)}</Text>
+                            </View>
+                            <View style={styles.dataHeightWeight} >
+                                <Text style={styles.titleHeightWeight} >Weight</Text>
+                                <Text>{PokemonUtil.getWeightPokemon(pokemon.weight)}</Text>
+                            </View>
+                        </View>
                     </Card>
                 </View>
             </ScrollView>
@@ -72,7 +89,8 @@ const styles = StyleSheet.create({
         height: 250,
     },
     body: {
-        marginLeft:15
+        marginLeft:15,
+        marginRight:15
     },
     title:{
         fontSize: 20,
@@ -118,6 +136,26 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "flex-end",
         alignItems: "center"
+    },
+    description:{
+        marginRight:15
+    },
+    card:{
+        flexDirection:'row',
+    },
+    viewHeightWeight:{
+        flexDirection:"row"
+    },
+    dataHeightWeight:{
+        flex: 1,
+        alignItems: "center",
+        marginBottom:12,
+        marginTop: 12,
+        fontSize: 14,
+    },
+    titleHeightWeight: {
+        color: "#acb0b4",
+        marginBottom: 5
     }
 });
 

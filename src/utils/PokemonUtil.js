@@ -81,6 +81,33 @@ const PokemonUtil = {
         }else{
             return {uri:pokemon.sprites.front_default}
         }   
+    },
+
+    getHeightPokemon: (height) => {
+        let heightMeters = height / 10;
+        let polegadas = heightMeters * 39.370;
+
+        if(heightMeters >= 1){
+            return `${polegadas.toFixed(2)} (${heightMeters.toFixed(2)} m)`;
+        }else{
+            return `${polegadas.toFixed(2)} (${heightMeters.toFixed(2)} cm)`;
+        }
+    },
+
+    getWeightPokemon: (weight) => {
+        let lbs = weight / 4.536;
+        let kg = lbs / 2.205;
+
+        return `${lbs.toFixed(1)} lbs (${kg.toFixed(1)} kg)`;
+    },
+
+    getDescriptionPokemon: (flavor_text_entries) => {
+        if(flavor_text_entries !== undefined && flavor_text_entries.length > 0){
+            let input = flavor_text_entries.find(input => {
+                return input.language.name === "en";
+            });
+            return input.flavor_text;
+        }
     }
 }
 
