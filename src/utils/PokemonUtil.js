@@ -1,4 +1,3 @@
-
 const PokemonUtil = {
     upperCaseFirstLetter: (string) => {
         if(string){

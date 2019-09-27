@@ -26,7 +26,10 @@ class Pokemon extends React.Component {
     getListTypes = () => {
         if(this.props.pokemon.types !== undefined){
             return this.props.pokemon.types.map(typeAux => {
-                return (<Text key={`${this.props.pokemon.name}-${typeAux.type.name}`} style={styles.type} >{PokemonUtil.upperCaseFirstLetter(typeAux.type.name)}</Text>);
+                return (
+                    <Text key={`${this.props.pokemon.name}-${typeAux.type.name}`} style={styles.type} >
+                        {PokemonUtil.upperCaseFirstLetter(typeAux.type.name)}
+                    </Text>);
             });
         }
     }
@@ -62,21 +65,54 @@ class Pokemon extends React.Component {
                     </View>
                 </View>
                 <View style={styles.body} >
-                    <Text style={styles.title} >Characteristic</Text>
-                    <Text style={styles.description} >{PokemonUtil.getDescriptionPokemon(specie.flavor_text_entries)}</Text>
+                    <Fragment>
+                        <Text style={styles.title} >About</Text>
+                        <Text style={styles.description} >{PokemonUtil.getDescriptionPokemon(specie.flavor_text_entries)}</Text>
 
-                    <Card>
-                        <View style={styles.viewHeightWeight} >
-                            <View style={styles.dataHeightWeight} >
-                                <Text style={styles.titleHeightWeight} >Height</Text>
-                                <Text>{PokemonUtil.getHeightPokemon(pokemon.height)}</Text>
+                        <Card>
+                            <View style={styles.viewHeightWeight} >
+                                <View style={styles.dataHeightWeight} >
+                                    <Text style={styles.titleHeightWeight} >Height</Text>
+                                    <Text>{PokemonUtil.getHeightPokemon(pokemon.height)}</Text>
+                                </View>
+                                <View style={styles.dataHeightWeight} >
+                                    <Text style={styles.titleHeightWeight} >Weight</Text>
+                                    <Text>{PokemonUtil.getWeightPokemon(pokemon.weight)}</Text>
+                                </View>
                             </View>
-                            <View style={styles.dataHeightWeight} >
-                                <Text style={styles.titleHeightWeight} >Weight</Text>
-                                <Text>{PokemonUtil.getWeightPokemon(pokemon.weight)}</Text>
+                        </Card>
+                    </Fragment>
+
+                    <Fragment>
+                        <Text style={styles.title} >Evolution Chain</Text>
+                        <View style={styles.evolutionChain} >
+                            <View style={styles.evolution} >
+                                <Image style={{width: 100, height: 100}} source={{uri:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/387.png"}} />
+                                <Text>Bullbasaur</Text>
+                            </View>
+                            <View>
+                                <Text>-></Text>
+                            </View>
+                            <View style={styles.evolution} >
+                                <Image style={{width: 100, height: 100}} source={{uri:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/388.png"}} />
+                                <Text>Bullbasaur</Text>
                             </View>
                         </View>
-                    </Card>
+                        <View style={styles.evolutionChain} >
+                            <View style={styles.evolution} >
+                                <Image style={{width: 100, height: 100}} source={{uri:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/388.png"}} />
+                                <Text>Bullbasaur</Text>
+                            </View>
+                            <View>
+                                <Text>-></Text>
+                            </View>
+                            <View style={styles.evolution} >
+                                <Image style={{width: 100, height: 100}} source={{uri:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/389.png"}} />
+                                <Text>Bullbasaur</Text>
+                            </View>
+                        </View>
+                    </Fragment>
+                    
                 </View>
             </ScrollView>
         );
@@ -156,6 +192,16 @@ const styles = StyleSheet.create({
     titleHeightWeight: {
         color: "#acb0b4",
         marginBottom: 5
+    },
+    evolutionChain:{
+        flexDirection:"row",
+        justifyContent:"space-around",
+        alignItems:"center",
+        marginTop: 7,
+        marginBottom: 7
+    },
+    evolution:{
+        alignItems:"center"
     }
 });
 
