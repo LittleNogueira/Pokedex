@@ -87,27 +87,27 @@ class Pokemon extends React.Component {
                         <Text style={styles.title} >Evolution Chain</Text>
                         <View style={styles.evolutionChain} >
                             <View style={styles.evolution} >
-                                <Image style={{width: 100, height: 100}} source={{uri:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/387.png"}} />
+                                <Image style={{width: 100, height: 100}} source={{uri:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"}} />
                                 <Text>Bullbasaur</Text>
                             </View>
                             <View>
                                 <Text>-></Text>
                             </View>
                             <View style={styles.evolution} >
-                                <Image style={{width: 100, height: 100}} source={{uri:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/388.png"}} />
+                                <Image style={{width: 100, height: 100}} source={{uri:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png"}} />
                                 <Text>Bullbasaur</Text>
                             </View>
                         </View>
                         <View style={styles.evolutionChain} >
                             <View style={styles.evolution} >
-                                <Image style={{width: 100, height: 100}} source={{uri:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/388.png"}} />
+                                <Image style={{width: 100, height: 100}} source={{uri:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png"}} />
                                 <Text>Bullbasaur</Text>
                             </View>
                             <View>
                                 <Text>-></Text>
                             </View>
                             <View style={styles.evolution} >
-                                <Image style={{width: 100, height: 100}} source={{uri:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/389.png"}} />
+                                <Image style={{width: 100, height: 100}} source={{uri:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png"}} />
                                 <Text>Bullbasaur</Text>
                             </View>
                         </View>
