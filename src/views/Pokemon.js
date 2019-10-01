@@ -7,11 +7,9 @@ import {
     ScrollView
 } from 'react-native';
 
-import Template from '../templates/Template';
 import PokemonUtil from '../utils/PokemonUtil';
-
 import Card from '../components/card/Card';
-
+import EvolutionChain from '../components/evolution-chain/EvolutionChain';
 
 class Pokemon extends React.Component {
 
@@ -19,8 +17,13 @@ class Pokemon extends React.Component {
         super(props);
         
         this.state = {
-            specie:{}
+            specie:{},
+            evolution_chain: []
         }
+    }
+
+    componentDidMount(){
+        this.getPokemonSpecies();
     }
 
     getListTypes = () => {
@@ -42,9 +45,17 @@ class Pokemon extends React.Component {
         });
     }
 
-    componentDidMount(){
-        this.getPokemonSpecies();
+    getEvlotuinChain = () => {
+        if(this.state.specie.evolution_chain !== undefined){
+            return (
+                <Fragment>
+                    <Text style={styles.title} >Evolution Chain</Text>
+                    <EvolutionChain urlEvolutionChain={this.state.specie.evolution_chain.url} />
+                </Fragment>
+            );
+        }
     }
+
 
     render() {
 
@@ -82,37 +93,7 @@ class Pokemon extends React.Component {
                             </View>
                         </Card>
                     </Fragment>
-
-                    <Fragment>
-                        <Text style={styles.title} >Evolution Chain</Text>
-                        <View style={styles.evolutionChain} >
-                            <View style={styles.evolution} >
-                                <Image style={{width: 100, height: 100}} source={{uri:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"}} />
-                                <Text>Bullbasaur</Text>
-                            </View>
-                            <View>
-                                <Text>-></Text>
-                            </View>
-                            <View style={styles.evolution} >
-                                <Image style={{width: 100, height: 100}} source={{uri:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png"}} />
-                                <Text>Bullbasaur</Text>
-                            </View>
-                        </View>
-                        <View style={styles.evolutionChain} >
-                            <View style={styles.evolution} >
-                                <Image style={{width: 100, height: 100}} source={{uri:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png"}} />
-                                <Text>Bullbasaur</Text>
-                            </View>
-                            <View>
-                                <Text>-></Text>
-                            </View>
-                            <View style={styles.evolution} >
-                                <Image style={{width: 100, height: 100}} source={{uri:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png"}} />
-                                <Text>Bullbasaur</Text>
-                            </View>
-                        </View>
-                    </Fragment>
-                    
+                    {this.getEvlotuinChain()}
                 </View>
             </ScrollView>
         );
@@ -192,16 +173,6 @@ const styles = StyleSheet.create({
     titleHeightWeight: {
         color: "#acb0b4",
         marginBottom: 5
-    },
-    evolutionChain:{
-        flexDirection:"row",
-        justifyContent:"space-around",
-        alignItems:"center",
-        marginTop: 7,
-        marginBottom: 7
-    },
-    evolution:{
-        alignItems:"center"
     }
 });
 

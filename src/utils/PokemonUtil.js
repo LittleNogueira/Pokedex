@@ -1,3 +1,5 @@
+// import console = require("console");
+
 const PokemonUtil = {
     upperCaseFirstLetter: (string) => {
         if(string){
@@ -107,7 +109,7 @@ const PokemonUtil = {
             });
             return input.flavor_text;
         }
-    }
+    },
 }
 
 export default PokemonUtil;

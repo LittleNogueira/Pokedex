@@ -36,8 +36,8 @@ class Pokedex extends React.Component {
             .then(res => {
 
                 let pokemons = [...this.state.pokemons,...res.results];
-                const initial = pokemons.length - (this.state.size * 2);
-                pokemons = pokemons.slice(initial >= 0 ? initial : 0,pokemons.length);
+                // const initial = pokemons.length - (this.state.size * 2);
+                // pokemons = pokemons.slice(initial >= 0 ? initial : 0,pokemons.length);
 
                 this.setState({
                     pokemons,
@@ -46,12 +46,6 @@ class Pokedex extends React.Component {
                 });
             });
        }
-    }
-
-    getPokemons = () => {
-        return this.state.pokemons.map(pokemon => {
-            return <ItemPokedex url={pokemon.url} />
-        });
     }
 
     goPokemon = (pokemon) => {
