@@ -3,8 +3,7 @@ import {
     Text,
     StyleSheet,
     FlatList,
-    View,
-    ActivityIndicator
+    View
 } from 'react-native';
 
 import Template from '../templates/Template';
@@ -18,7 +17,7 @@ class Pokedex extends React.Component {
         this.state = {
             pokemons:[],
             loading: false,
-            offset: 0,
+            offset: 360,
             size: 20
         }
     }
@@ -78,7 +77,9 @@ class Pokedex extends React.Component {
                 <Text style={styles.title} >Pokedex</Text>
                 <FlatList
                     data={pokemons}
-                    renderItem={({ item, index}) => <View style={{marginLeft:(index%2)*10,flex:1}} ><ItemPokedex onPress={this.goPokemon.bind(this)} url={item.url}/></View>}
+                    renderItem={({ item, index}) => {
+                        return <View style={{marginLeft:(index%2)*10,flex:1}} ><ItemPokedex onPress={this.goPokemon.bind(this)} url={item.url}/></View>
+                    }}
                     keyExtractor={item => item.name}
                     numColumns={2}
                     onEndReached={this.loadMorePokemons}

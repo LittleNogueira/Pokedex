@@ -70,6 +70,9 @@ const PokemonUtil = {
             case 'fighting':
                 return "#a2a29b";
                 break;
+            case 'ghost':
+                return '#9473b4';
+                break;
 
             default:
                 return "#c5c5c5"

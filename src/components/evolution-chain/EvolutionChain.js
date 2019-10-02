@@ -48,7 +48,7 @@ class EvolutionChain extends React.Component{
 
             listEvolution = this.state.evolution_chain.map(evolution => {
                 return (
-                    <View style={styles.evolutionChain} >
+                    <View key={`${evolution.pokemon} - ${evolution.evolve_to}`} style={styles.evolutionChain} >
                         <Evolution url={evolution.pokemon}/>
                         <View>
                             <Text>-></Text>
