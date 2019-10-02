@@ -73,6 +73,9 @@ const PokemonUtil = {
             case 'ghost':
                 return '#9473b4';
                 break;
+            case 'ice':
+                return '#a4def6';
+                break;
 
             default:
                 return "#c5c5c5"
