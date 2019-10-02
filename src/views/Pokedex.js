@@ -17,7 +17,7 @@ class Pokedex extends React.Component {
         this.state = {
             pokemons:[],
             loading: false,
-            offset: 360,
+            offset: 0,
             size: 20
         }
     }

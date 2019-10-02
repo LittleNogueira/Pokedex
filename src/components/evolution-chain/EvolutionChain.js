@@ -30,7 +30,8 @@ class EvolutionChain extends React.Component{
             while(chain.evolves_to.length != 0 ){
                 const evolution = {
                     pokemon:chain.species.url.replace('pokemon-species','pokemon'),
-                    evolve_to:chain.evolves_to[0].species.url.replace('pokemon-species','pokemon')
+                    evolve_to:chain.evolves_to[0].species.url.replace('pokemon-species','pokemon'),
+                    level: chain.evolves_to[0].evolution_details[0].min_level
                 }
 
                 evolution_chain = [...evolution_chain,evolution];
@@ -50,8 +51,9 @@ class EvolutionChain extends React.Component{
                 return (
                     <View key={`${evolution.pokemon} - ${evolution.evolve_to}`} style={styles.evolutionChain} >
                         <Evolution url={evolution.pokemon}/>
-                        <View>
-                            <Text>-></Text>
+                        <View style={styles.evolutionVector} >
+                            <Image style={{width: 20, height: 10}} source={require('../../../assets/vector.png')} />
+                            <Text style={styles.level} >Lvl {evolution.level ? evolution.level : '?'}</Text>
                         </View>
                         <Evolution url={evolution.evolve_to}/>
                     </View>
@@ -82,6 +84,13 @@ const styles = StyleSheet.create({
     },
     evolution:{
         alignItems:"center"
+    },
+    evolutionVector:{
+        alignItems:"center"
+    },
+    level:{
+        fontSize: 12,
+        marginTop:5
     }
 });
 
