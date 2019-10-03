@@ -15,12 +15,15 @@ After clone this project enter in folder of project, and execute the following c
 cd /path/Pokedex
 
 npm install
-
 ```
 
-Open your emulator Android, and execute the following comands.
+Open your Android emulator, and execute the following comands.
 
 ```
 npm start
 npm run android
 ```
+
+The app should be installing on your emulator.
+
+Thank you! :smiley:	
