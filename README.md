@@ -1,7 +1,7 @@
 # Pokedex :computer:
 A app made to practice a little React Native, just for study purposes, the app goal is to simulate a pokedex, the project was entirely based on an UpLabs layout https://www.uplabs.com/posts/pokedex-app
 
-In this app we use the https://pokeapi.co/ API to get all the pokemons and information about the pokemon world.
+In this app was used the https://pokeapi.co/ API to get all the pokemons and information about the pokemon world.
 
 ## Installation
 
