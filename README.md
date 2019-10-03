@@ -9,6 +9,9 @@ This link will help you for configure your environment for use React Native
 
 https://facebook.github.io/react-native/docs/0.60/getting-started
 
+
+### Configure project
+
 After clone this project enter in folder of project, and execute the following comands.
 
 ```
